@@ -1,3 +1,4 @@
+package modelo;
 
 public class Nino {
 	private String nombre;
@@ -6,6 +7,7 @@ public class Nino {
 	private String pais;
 	private String[] juguetes;
 	private boolean bueno;
+	private String carta;
 	
 	public Nino(String nombre, int edad, char genero, String pais, boolean bueno)
 	{
@@ -14,7 +16,8 @@ public class Nino {
 		this.setGenero(genero);
 		this.setPais(pais);
 		this.setJuguetes(new String[5]);
-		this.bueno = bueno;
+		this.setBueno(bueno);
+		this.setCarta("");
 	}
 
 	public String getNombre() {
@@ -62,6 +65,22 @@ public class Nino {
 	}
 	public String getJuguetes(int posicion) {
 		return juguetes[posicion];
+	}
+
+	public boolean isBueno() {
+		return bueno;
+	}
+
+	public void setBueno(boolean bueno) {
+		this.bueno = bueno;
+	}
+
+	public String getCarta() {
+		return carta;
+	}
+
+	public void setCarta(String carta) {
+		this.carta = carta;
 	}
 
 

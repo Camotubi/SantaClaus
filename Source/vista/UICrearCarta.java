@@ -1,3 +1,4 @@
+package vista;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,7 +16,8 @@ import java.awt.BorderLayout;
 import java.awt.SystemColor;
 import java.awt.Color;
 
-public class InterfazGrafica {
+@SuppressWarnings("unused")
+public class UICrearCarta {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -24,16 +26,17 @@ public class InterfazGrafica {
 
 
 
-	public InterfazGrafica() {
+	public UICrearCarta() {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 206);
+		frame.setBounds(100, 100, 513, 229);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -70,13 +73,13 @@ public class InterfazGrafica {
 		panelSeleccionJuguetes.setLayout(null);
 		
 		JList listJuguetesDisponibles = new JList();
-		listJuguetesDisponibles.setBounds(10, 11, 189, 84);
+		listJuguetesDisponibles.setBounds(10, 39, 189, 84);
 		panelSeleccionJuguetes.add(listJuguetesDisponibles);
 		
 		JList listJuguetesSeleccionados = new JList();
-		listJuguetesSeleccionados.setBounds(209, 11, 215, 84);
+		listJuguetesSeleccionados.setBounds(272, 39, 215, 84);
 		listJuguetesSeleccionados.setModel(new AbstractListModel() {
-			String[] values = new String[] {"-"};
+			String[] values = new String[] {};
 			public int getSize() {
 				return values.length;
 			}
@@ -86,18 +89,34 @@ public class InterfazGrafica {
 		});
 		panelSeleccionJuguetes.add(listJuguetesSeleccionados);
 		
+		JLabel lblJuguetesDisponibles = new JLabel("Juguetes Disponibles");
+		lblJuguetesDisponibles.setBounds(49, 14, 114, 14);
+		panelSeleccionJuguetes.add(lblJuguetesDisponibles);
+		
+		JLabel lblJuguetesSeleccionados = new JLabel("Juguetes Seleccionados");
+		lblJuguetesSeleccionados.setBounds(327, 14, 123, 14);
+		panelSeleccionJuguetes.add(lblJuguetesSeleccionados);
+		
+		JButton buttonSeleccionar = new JButton("->");
+		buttonSeleccionar.setBounds(209, 61, 53, 23);
+		panelSeleccionJuguetes.add(buttonSeleccionar);
+		
+		JButton button = new JButton("<-");
+		button.setBounds(209, 95, 53, 23);
+		panelSeleccionJuguetes.add(button);
+		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setBackground(Color.RED);
 		frame.getContentPane().add(panelBotones, BorderLayout.SOUTH);
 		
-		JButton btnSiguiente = new JButton("Siguiente");
-		panelBotones.add(btnSiguiente);
+		JButton btnAtras = new JButton("Atras");
+		panelBotones.add(btnAtras);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		panelBotones.add(btnCancelar);
 		
-		JButton btnAtras = new JButton("Atras");
-		panelBotones.add(btnAtras);
+		JButton btnSiguiente = new JButton("Siguiente");
+		panelBotones.add(btnSiguiente);
 	}
 	
 	public void start()

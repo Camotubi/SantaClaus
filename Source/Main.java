@@ -1,8 +1,10 @@
 
+import vista.UICrearCarta;
+
 public class Main {
 	public static void main(String[] Args)
 	{
-		InterfazGrafica iG = new InterfazGrafica();
+		UICrearCarta iG = new UICrearCarta();
 		
 		iG.start();
 	}
