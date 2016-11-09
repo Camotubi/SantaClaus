@@ -5,14 +5,16 @@ public class Nino {
 	private char genero;
 	private String pais;
 	private String[] juguetes;
+	private boolean bueno;
 	
-	public Nino(String nombre, int edad, char genero, String pais)
+	public Nino(String nombre, int edad, char genero, String pais, boolean bueno)
 	{
 		this.setNombre(nombre);
 		this.setEdad(edad);
 		this.setGenero(genero);
 		this.setPais(pais);
 		this.setJuguetes(new String[5]);
+		this.bueno = bueno;
 	}
 
 	public String getNombre() {
