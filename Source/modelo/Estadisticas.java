@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 public class Estadisticas {
 	private ArrayList<Nino> listaPedidos = new ArrayList<Nino>();
+	private ArrayList<Juguete> listaJuguetes = new ArrayList<Juguete>();
 
 	public ArrayList<Nino> getListaPedidos() {
 		return listaPedidos;
@@ -18,5 +19,17 @@ public class Estadisticas {
 
 	public void setListaPedidos(Nino nino) {
 		this.listaPedidos.add(nino);
+	}
+	public void agregarJuguete(String nombre, String tipo, int edadMin, int edadMax)
+	{
+		getListaJuguetes().add(new Juguete(nombre,tipo,edadMin,edadMax));
+	}
+
+	public ArrayList<Juguete> getListaJuguetes() {
+		return listaJuguetes;
+	}
+
+	public void setListaJuguetes(ArrayList<Juguete> listaJuguetes) {
+		this.listaJuguetes = listaJuguetes;
 	}
 }

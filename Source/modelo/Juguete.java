@@ -4,6 +4,15 @@ public class Juguete {
 	private String nombre;
 	private int edadMin;
 	private int edadMax;
+	private String tipo;
+	
+	public Juguete(String nombre, String tipo, int edadMin, int edadMax)
+	{
+		this.nombre = nombre;
+		this.tipo = tipo;
+		this.edadMin = edadMin;
+		this.edadMax = edadMax;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -21,6 +30,12 @@ public class Juguete {
 	}
 	public void setEdadMin(int edadMin) {
 		this.edadMin = edadMin;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }
