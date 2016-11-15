@@ -26,6 +26,7 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import controlador.ControladorCrearCarta;
 import javax.swing.JTextPane;
@@ -251,8 +252,16 @@ public class UICrearCarta {
 		else {
 			if(currentPanelString=="PanelEleRegalos") // cambio de pantalla
 			{
-				ninoActual = objParaNino.testNinobueno();// test para saber si nino bueno o malo
-				currentPanelString ="PanelEleRegalos";
+				currentPanelString ="panelDatosNino";
+				Random random = new Random();
+				int numtemp = random.nextInt(50);// test para saber si nino bueno o malo
+				if(numtemp%2 ==0)
+				{
+					ninoActual.setBueno(true);
+				}
+				else
+					ninoActual.setBueno(false);
+				
 				if(ninoActual.isBueno()==true)
 				{
 					Resps.respStart(true);

@@ -60,7 +60,7 @@ public class RespuestaSanta {
 		JTextArea ninoBueno = new JTextArea();
 		ninoBueno.setVisible(true);
 		ninoBueno.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nPolo Norte, ____de noviembre del 20161\r\nNombre__DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");
-		ninoBueno.setSize(new Dimension(100, 100));
+		ninoBueno.setSize(new Dimension(105, 105));
 		panel_Bueno.add(ninoBueno);
 		}
 		else {
