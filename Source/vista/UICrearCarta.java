@@ -21,12 +21,16 @@ import javax.swing.JScrollPane;
 import java.awt.CardLayout;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractListModel;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
@@ -56,6 +60,8 @@ public class UICrearCarta {
 	private RespuestaSanta Resps;
 	JComboBox cbGenero = new JComboBox();
 	
+	JLabel picLabel;
+	
 	public UICrearCarta() {
 		initialize();
 	}
@@ -67,6 +73,14 @@ public class UICrearCarta {
 	 */
 	@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 	private void initialize() {
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/pepeSanta.jpg"));
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(frame, "rip");
+			e1.printStackTrace();
+		}
+		
 		 Estadistica = new Estadisticas();
 		 listJuguetesDisponibles = new JList();
 		 scrollPane.setBounds(10, 39, 153, 84);
@@ -224,6 +238,9 @@ public class UICrearCarta {
 		getFrame().getContentPane().add(panelBotones, BorderLayout.SOUTH);
 		
 		scrollPane.setViewportView(listJuguetesDisponibles);
+		
+		picLabel = new JLabel(new ImageIcon(myPicture));
+		panelDatosNino.add(picLabel);
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
