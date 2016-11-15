@@ -27,7 +27,10 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
+import controlador.ControladorCrearCarta;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.JInternalFrame;
 @SuppressWarnings("unused")
 public class UICrearCarta {
 
@@ -44,9 +47,14 @@ public class UICrearCarta {
 	private JList listJuguetesDisponibles;
 	DefaultListModel<String> modelo = new DefaultListModel<String>();
 	private JScrollPane scrollPane = new JScrollPane();
+	
+	private ControladorCrearCarta objParaNino;
+	private RespuestaSanta Resps;
+	
 	public UICrearCarta() {
 		initialize();
 	}
+	ControladorCrearCarta objCont;	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -99,6 +107,7 @@ public class UICrearCarta {
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		panelDatosNino.add(lblNombre);
+		
 		
 		textField = new JTextField();
 		panelDatosNino.add(textField);
@@ -178,7 +187,9 @@ public class UICrearCarta {
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nextPanel();
-					
+				//ControladorCrearCarta objCont = new ControladorCrearCarta();	
+				
+				
 			}
 		});
 		panelBotones.add(btnSiguiente);
@@ -218,8 +229,8 @@ public class UICrearCarta {
 		if(currentPanelString =="panelDatosNino"){
 			if(Integer.parseInt(txtEdad.getText())<18)
 			{
-				generarListaSeleccionable();
-				
+				currentPanelString ="PanelEleRegalos";
+				generarListaSeleccionable();	
 				for(int i = 0; i<listaJuguetesEscogibles.size();i++)
 				{
 					
@@ -231,11 +242,27 @@ public class UICrearCarta {
 				getCards().next(getPanel_1());
 				scrollPane.setViewportView(listJuguetesDisponibles);
 				
-				
 			}
 		else
-			{JOptionPane.showMessageDialog(frame, "eestas viejo");}
+			{JOptionPane.showMessageDialog(frame, "eestas viejo");
+			}
+			
 		}
+		else {
+			if(currentPanelString=="PanelEleRegalos") // cambio de pantalla
+			{
+				ninoActual = objParaNino.testNinobueno();// test para saber si nino bueno o malo
+				currentPanelString ="PanelEleRegalos";
+				if(ninoActual.isBueno()==true)
+				{
+					Resps.respStart(true);
+				}
+				else
+					Resps.respStart(false);
+				
+			}
+		}
+		
 	}
 	
 	public void generarListaSeleccionable()

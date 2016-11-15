@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 import modelo.Estadisticas;
@@ -84,5 +85,20 @@ public class ControladorCrearCarta {
 		{
 			
 		}
+	}
+	
+	public Nino testNinobueno()
+	{
+		boolean temp;
+		Random random = new Random();
+		int numtemp = random.nextInt(50);
+		if(numtemp%2 ==0)
+		{
+			ninoActual.setBueno(true);
+		}
+		else
+			ninoActual.setBueno(false);
+		//ninoActual.setBueno(temp);
+		return ninoActual;
 	}
 }
