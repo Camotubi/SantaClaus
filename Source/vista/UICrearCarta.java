@@ -46,6 +46,7 @@ public class UICrearCarta {
 	private ArrayList<Juguete> listaJuguetesEscogibles;
 	private JList listJuguetesDisponibles;
 	DefaultListModel<String> modelo = new DefaultListModel<String>();
+	DefaultListModel<String> modelo2 = new DefaultListModel<String>();
 	private JScrollPane scrollPane = new JScrollPane();
 	
 	private ControladorCrearCarta objParaNino;
@@ -157,16 +158,44 @@ public class UICrearCarta {
 		panelSeleccionJuguetes.add(lblJuguetesSeleccionados);
 		
 		JButton buttonSeleccionar = new JButton("->");
+		buttonSeleccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(modelo2.getSize()>=5)
+				{
+					JOptionPane.showMessageDialog(frame, "son solo 5 juguetes boi ._.");
+				}
+				else
+				{
+					modelo2.addElement((String) listJuguetesDisponibles.getSelectedValue());
+					int iJugueteSeleccionado = listJuguetesDisponibles.getSelectedIndex();
+					modelo.removeElementAt(iJugueteSeleccionado);
+				}
+
+				
+				
+			}
+		});
 		buttonSeleccionar.setBounds(209, 61, 53, 23);
 		panelSeleccionJuguetes.add(buttonSeleccionar);
 		
 		JButton button = new JButton("<-");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				modelo.addElement((String)listJuguetesSeleccionados.getSelectedValue());
+				int iJugueteSeleccionado = listJuguetesSeleccionados.getSelectedIndex();
+				modelo2.removeElementAt(iJugueteSeleccionado);
+			}
+		});
 		button.setBounds(209, 95, 53, 23);
 		panelSeleccionJuguetes.add(button);
 		
 		JButton btnVerJuguete = new JButton("Ver Juguete");
 		btnVerJuguete.setBounds(192, 123, 101, 23);
 		panelSeleccionJuguetes.add(btnVerJuguete);
+		
+		JPanel panelCarta = new JPanel();
+		panel_1.add(panelCarta, "name_28049969656295");
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setBackground(Color.RED);
@@ -193,6 +222,7 @@ public class UICrearCarta {
 			}
 		});
 		panelBotones.add(btnSiguiente);
+		listJuguetesSeleccionados.setModel(modelo2);
 	}
 	
 	public void start()
