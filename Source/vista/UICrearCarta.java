@@ -353,11 +353,13 @@ public class UICrearCarta {
 			if(ninoActual.isBueno()==true)
 			{
 				
-				Cartas.setText("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");
+				Cartas.setText(generarRespuestaSanta(ninoActual));
 			}
 			else
-			{	Cartas.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
-			getCards().next(getPanel_1());
+			{	Cartas.setText(generarRespuestaSanta(ninoActual));
+				Cartas.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
+				Cartas.setText(generarRespuestaSanta(ninoActual));
+				getCards().next(getPanel_1());
 			}
 			break;
 		case "panelCarta":
@@ -404,5 +406,35 @@ public class UICrearCarta {
 		{
 			System.out.println(listaJuguetesEscogibles.get(i).getNombre()+ " " + listaJuguetesEscogibles.get(i).getEdadMin());
 		}
+	}
+	
+	public String generarRespuestaSanta(Nino nino)
+	{
+		StringBuilder strbuild = new StringBuilder();
+		strbuild.append("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, _de noviembre del 20161\r\n"
+				+ nino.getNombre()
+				+ "\nDireccion\r\n"
+				+ nino.getPais()
+				+ "\n\r\nQuerido "
+				+ nino.getNombre()
+				+ ",\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito"
+				+ nino.getNombre()
+				+ " porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r"
+);
+		
+		for(int i = 0; i<nino.getJuguetes().length;i++)
+		{
+			strbuild.append("/n" + nino.getJuguetes(i)+"/n");
+		}
+		
+		strbuild.append(
+				"\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y "
+						+ "siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz "
+						+ "Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus"
+				);
+		
+		System.out.println(strbuild.toString());
+		return strbuild.toString();
+		
 	}
 }
