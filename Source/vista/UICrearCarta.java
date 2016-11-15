@@ -113,7 +113,7 @@ public class UICrearCarta {
 			Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"");
 		currentPanelString = "panelDatosNino";
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 597, 326);
+		getFrame().setBounds(100, 100, 866, 562);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -314,23 +314,40 @@ public class UICrearCarta {
 		{
 		
 		case "panelDatosNino":
-			if(Integer.parseInt(txtEdad.getText())<18)
+		{
+			String nombreNino = txtNombre.getText();
+			int edadNino;
+			try
 			{
-				currentPanelString ="panelSeleccionJuguetes";
-				generarListaSeleccionable();
-				ninoActual = new Nino(txtNombre.getText(),Integer.parseInt(txtEdad.getText()),(String)cbGenero.getSelectedItem(),txtPais.getText(),true);
-				for(int i = 0; i<listaJuguetesEscogibles.size();i++)
+				edadNino = Integer.parseInt(txtEdad.getText());
+				
+				ninoActual = new Nino(nombreNino,edadNino,(String)cbGenero.getSelectedItem(),txtPais.getText(),true);
+				if(edadNino<18)
 				{
-					modelo.addElement(listaJuguetesEscogibles.get(i).getNombre());	
+					currentPanelString ="panelSeleccionJuguetes";
+					generarListaSeleccionable();
+					
+					for(int i = 0; i<listaJuguetesEscogibles.size();i++)
+					{
+						modelo.addElement(listaJuguetesEscogibles.get(i).getNombre());	
+					}
+					System.out.println("HALP"+ modelo.getElementAt(1));
+					listJuguetesDisponibles.setModel(modelo);
+					getCards().next(getPanel_1());
 				}
-				System.out.println("HALP"+ modelo.getElementAt(1));
-				listJuguetesDisponibles.setModel(modelo);
-				getCards().next(getPanel_1());
-			}
-			else
+				else
 				{
 					JOptionPane.showMessageDialog(frame, "eestas viejo");
 				}
+			}
+			catch (NumberFormatException e)
+			{
+				JOptionPane.showMessageDialog(frame, "Corrige tu edad porfa");
+			}
+			
+		}
+			
+			
 			break;
 		case "panelSeleccionJuguetes":
 			currentPanelString ="panelCarta";
