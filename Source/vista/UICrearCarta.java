@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import modelo.Estadisticas;
 import modelo.Juguete;
 import modelo.Nino;
-import sun.applet.Main;
+
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -342,7 +342,7 @@ public class UICrearCarta {
 		}
 		ImageIcon Icon;
 		System.out.println(DirImg);
-		Icon = new ImageIcon(Main.class.getClassLoader().getResource(DirImg));	
+		Icon = new ImageIcon(UICrearCarta.class.getClassLoader().getResource(DirImg));	
         JOptionPane.showMessageDialog(null, null, null, JOptionPane.PLAIN_MESSAGE, Icon);
 
 		
