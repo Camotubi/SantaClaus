@@ -21,12 +21,16 @@ import javax.swing.JScrollPane;
 import java.awt.CardLayout;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractListModel;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
@@ -59,6 +63,8 @@ public class UICrearCarta {
 	JTextPane CartaBuena = new JTextPane();
 	JTextPane CartaMala = new JTextPane();
 	
+	JLabel picLabel;
+	
 	public UICrearCarta() {
 		initialize();
 	}
@@ -70,6 +76,14 @@ public class UICrearCarta {
 	 */
 	@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 	private void initialize() {
+		BufferedImage myPicture = null;
+		try {
+			myPicture = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/pepeSanta.jpg"));
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(frame, "rip");
+			e1.printStackTrace();
+		}
+		
 		 Estadistica = new Estadisticas();
 		 listJuguetesDisponibles = new JList();
 		 scrollPane.setBounds(10, 39, 153, 84);
@@ -215,7 +229,7 @@ public class UICrearCarta {
 		panelSeleccionJuguetes.add(btnVerJuguete);
 		
 		JPanel panelCarta = new JPanel();
-		panel_1.add(panelCarta, "name_28049969656295");
+		panel_1.add(panelCarta, "panelCarta");
 		panelCarta.setLayout(null);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -228,9 +242,26 @@ public class UICrearCarta {
 		panelBotones.setBackground(Color.RED);
 		getFrame().getContentPane().add(panelBotones, BorderLayout.SOUTH);
 		
+		scrollPane.setViewportView(listJuguetesDisponibles);
+		
+		picLabel = new JLabel(new ImageIcon(myPicture));
+		panelDatosNino.add(picLabel);
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				switch(currentPanelString)
+				{
+				
+				case "panelDatosNino":
+					
+					break;
+				case "panelSeleccionJuguetes":
+					currentPanelString = "panelDatosNino";
+					break;
+				case "panelCarta":
+					currentPanelString = "panelSeleccionJuguetes";
+					break;
+				}
 				getCards().previous(getPanel_1());
 			}
 		});
@@ -283,55 +314,58 @@ public class UICrearCarta {
 	
 	public void nextPanel()
 	{
-		if(currentPanelString =="panelDatosNino"){
+		
+		switch(currentPanelString)
+		{
+		
+		case "panelDatosNino":
+		{
+			
+		}
 			if(Integer.parseInt(txtEdad.getText())<18)
 			{
-				currentPanelString ="PanelEleRegalos";
+				currentPanelString ="panelSeleccionJuguetes";
 				generarListaSeleccionable();
 				ninoActual = new Nino(txtNombre.getText(),Integer.parseInt(txtEdad.getText()),(String)cbGenero.getSelectedItem(),txtPais.getText(),true);
 				for(int i = 0; i<listaJuguetesEscogibles.size();i++)
 				{
-					
-					modelo.addElement(listaJuguetesEscogibles.get(i).getNombre());
-					
+					modelo.addElement(listaJuguetesEscogibles.get(i).getNombre());	
 				}
 				System.out.println("HALP"+ modelo.getElementAt(1));
 				listJuguetesDisponibles.setModel(modelo);
 				getCards().next(getPanel_1());
-				scrollPane.setViewportView(listJuguetesDisponibles);
-				
 			}
-		else
-			{JOptionPane.showMessageDialog(frame, "eestas viejo");
-			}
-			
-		}
-		else {
-			if(currentPanelString=="PanelEleRegalos") // cambio de pantalla
+			else
+				{
+					JOptionPane.showMessageDialog(frame, "eestas viejo");
+				}
+			break;
+		case "panelSeleccionJuguetes":
+			currentPanelString ="panelCarta";
+			Random random = new Random();
+			int numtemp = random.nextInt(50);// test para saber si nino bueno o malo
+			if(numtemp%2 ==0)
 			{
-				currentPanelString ="panelDatosNino";
-				Random random = new Random();
-				int numtemp = random.nextInt(50);// test para saber si nino bueno o malo
-				if(numtemp%2 ==0)
-				{
-					ninoActual.setBueno(true);
-				}
-				else
-					ninoActual.setBueno(false);
-				
-				if(ninoActual.isBueno()==true)
-				{
-					getCards().next(getPanel_1());
-					CartaBuena.setText("\t\t\t\t// imagen navide\u00F1a\r\n\r\nPolo Norte, ____ de noviembre de 2016\r\n\r\nNombre_del_ni\u00F1o\r\n\r\nDirecci\u00F3n\r\n\r\nPa\u00EDs\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");				}
-				else
-				{	
-				
-				CartaMala.setText("\t\t\t\t// imagen navide\u00F1a\r\n\r\nPolo Norte, ____ de noviembre de 2016\r\n\r\nNombre_del_ni\u00F1o\r\n\r\nDirecci\u00F3n\r\n\r\nPa\u00EDs\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");			}
-				}
+				ninoActual.setBueno(true);
 			}
-		
-	}
+			else
+				ninoActual.setBueno(false);
+			
+			if(ninoActual.isBueno()==true)
+			{
+				
+				CartaBuena.setText("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");
+			}
+			else
+				CartaMala.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
+			getCards().next(getPanel_1());
+			break;
+		case "panelCarta":
+			break;
+		}
+		}	
 	
+
 	public void VerImagen()
 	{
 		String temp = listJuguetesDisponibles.getSelectedValue().toString();
