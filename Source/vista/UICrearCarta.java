@@ -38,6 +38,8 @@ import controlador.ControladorCrearCarta;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JInternalFrame;
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollBar;
 @SuppressWarnings("unused")
 public class UICrearCarta {
 
@@ -55,10 +57,11 @@ public class UICrearCarta {
 	DefaultListModel<String> modelo = new DefaultListModel<String>();
 	DefaultListModel<String> modelo2 = new DefaultListModel<String>();
 	private JScrollPane scrollPane = new JScrollPane();
-	private JTextArea textAreaRespSanta = new JTextArea();
 	private ControladorCrearCarta objParaNino;
 	private RespuestaSanta Resps;
 	JComboBox cbGenero = new JComboBox();
+	JTextPane CartaBuena = new JTextPane();
+	JTextPane CartaMala = new JTextPane();
 	
 	JLabel picLabel;
 	
@@ -229,10 +232,12 @@ public class UICrearCarta {
 		panel_1.add(panelCarta, "panelCarta");
 		panelCarta.setLayout(null);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 0, 581, 255);
+		panelCarta.add(scrollPane_1);
 		
-		textAreaRespSanta.setBounds(38, 41, 508, 164);
-		panelCarta.add(textAreaRespSanta);
-		
+		scrollPane_1.setViewportView(CartaBuena);
+		scrollPane_1.setViewportView(CartaMala);
 		JPanel panelBotones = new JPanel();
 		panelBotones.setBackground(Color.RED);
 		getFrame().getContentPane().add(panelBotones, BorderLayout.SOUTH);
@@ -320,7 +325,6 @@ public class UICrearCarta {
 			try
 			{
 				edadNino = Integer.parseInt(txtEdad.getText());
-				
 				ninoActual = new Nino(nombreNino,edadNino,(String)cbGenero.getSelectedItem(),txtPais.getText(),true);
 				if(edadNino<18)
 				{
@@ -363,18 +367,18 @@ public class UICrearCarta {
 			if(ninoActual.isBueno()==true)
 			{
 				
-				textAreaRespSanta.setText("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, ____de noviembre del 20161\r\nNombre__DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");
+				CartaBuena.setText("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");
 			}
 			else
-				textAreaRespSanta.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, ____de noviembre del 20161\r\nNombre__DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
+				CartaMala.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
 			getCards().next(getPanel_1());
 			break;
 		case "panelCarta":
 			break;
 		}
-		
-	}
+		}	
 	
+
 	public void VerImagen()
 	{
 		String temp = listJuguetesDisponibles.getSelectedValue().toString();
