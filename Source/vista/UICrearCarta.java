@@ -36,7 +36,7 @@ import javax.swing.JInternalFrame;
 public class UICrearCarta {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField txtNombre;
 	private JTextField txtEdad = new JTextField();
 	private CardLayout cards = new CardLayout(0, 0);
 	private JPanel panel_1 = new JPanel();
@@ -49,14 +49,16 @@ public class UICrearCarta {
 	DefaultListModel<String> modelo = new DefaultListModel<String>();
 	DefaultListModel<String> modelo2 = new DefaultListModel<String>();
 	private JScrollPane scrollPane = new JScrollPane();
-	
+	private JTextArea textAreaRespSanta = new JTextArea();
 	private ControladorCrearCarta objParaNino;
 	private RespuestaSanta Resps;
+	JComboBox cbGenero = new JComboBox();
 	
 	public UICrearCarta() {
 		initialize();
 	}
 	ControladorCrearCarta objCont;	
+	private JTextField txtPais;
 
 	/**
 	 * Initialize the contents of the frame.
@@ -95,7 +97,7 @@ public class UICrearCarta {
 		Estadistica.agregarJuguete("Pin Pon","Pelota",5,18);
 		currentPanelString = "panelDatosNino";
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 513, 229);
+		getFrame().setBounds(100, 100, 597, 326);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -111,9 +113,9 @@ public class UICrearCarta {
 		panelDatosNino.add(lblNombre);
 		
 		
-		textField = new JTextField();
-		panelDatosNino.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		panelDatosNino.add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JLabel lblEdad = new JLabel("Edad:");
 		panelDatosNino.add(lblEdad);
@@ -125,9 +127,16 @@ public class UICrearCarta {
 		JLabel lblGenero = new JLabel("Genero:");
 		panelDatosNino.add(lblGenero);
 		
-		JComboBox comboBox = new JComboBox();
-		panelDatosNino.add(comboBox);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"M", "F"}));
+		
+		panelDatosNino.add(cbGenero);
+		cbGenero.setModel(new DefaultComboBoxModel(new String[] {"M", "F"}));
+		
+		JLabel lblPais = new JLabel("Pais:");
+		panelDatosNino.add(lblPais);
+		
+		txtPais = new JTextField();
+		panelDatosNino.add(txtPais);
+		txtPais.setColumns(10);
 		
 		JPanel panelSeleccionJuguetes = new JPanel();
 		getPanel_1().add(panelSeleccionJuguetes, "panelSeleccionJuguetes");
@@ -138,7 +147,7 @@ public class UICrearCarta {
 		//panelSeleccionJuguetes.add(listJuguetesDisponibles);
 		
 		JList listJuguetesSeleccionados = new JList();
-		listJuguetesSeleccionados.setBounds(272, 39, 215, 84);
+		listJuguetesSeleccionados.setBounds(303, 40, 215, 84);
 		listJuguetesSeleccionados.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
@@ -197,6 +206,11 @@ public class UICrearCarta {
 		
 		JPanel panelCarta = new JPanel();
 		panel_1.add(panelCarta, "name_28049969656295");
+		panelCarta.setLayout(null);
+		
+		
+		textAreaRespSanta.setBounds(38, 41, 508, 164);
+		panelCarta.add(textAreaRespSanta);
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setBackground(Color.RED);
@@ -261,7 +275,8 @@ public class UICrearCarta {
 			if(Integer.parseInt(txtEdad.getText())<18)
 			{
 				currentPanelString ="PanelEleRegalos";
-				generarListaSeleccionable();	
+				generarListaSeleccionable();
+				ninoActual = new Nino(txtNombre.getText(),Integer.parseInt(txtEdad.getText()),(String)cbGenero.getSelectedItem(),txtPais.getText(),true);
 				for(int i = 0; i<listaJuguetesEscogibles.size();i++)
 				{
 					
@@ -294,11 +309,12 @@ public class UICrearCarta {
 				
 				if(ninoActual.isBueno()==true)
 				{
-					Resps.respStart(true);
+					getCards().next(getPanel_1());
+					textAreaRespSanta.setText("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, ____de noviembre del 20161\r\nNombre__DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito XXX porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus");
 				}
 				else
 					Resps.respStart(false);
-				
+					textAreaRespSanta.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, ____de noviembre del 20161\r\nNombre__DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
 			}
 		}
 		

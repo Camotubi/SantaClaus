@@ -3,13 +3,13 @@ package modelo;
 public class Nino {
 	private String nombre;
 	private int edad;
-	private char genero;
+	private String genero;
 	private String pais;
 	private String[] juguetes;
 	private boolean bueno;
 	private String carta;
 	
-	public Nino(String nombre, int edad, char genero, String pais, boolean bueno)
+	public Nino(String nombre, int edad, String  genero, String pais, boolean bueno)
 	{
 		this.setNombre(nombre);
 		this.setEdad(edad);
@@ -36,11 +36,11 @@ public class Nino {
 		this.edad = edad;
 	}
 
-	public char getGenero() {
+	public String  getGenero() {
 		return genero;
 	}
 
-	public void setGenero(char genero) {
+	public void setGenero(String  genero) {
 		this.genero = genero;
 	}
 
