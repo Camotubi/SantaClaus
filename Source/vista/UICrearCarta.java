@@ -32,9 +32,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.awt.event.ActionEvent;
-import controlador.ControladorCrearCarta;
+
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JInternalFrame;
@@ -57,17 +58,18 @@ public class UICrearCarta {
 	DefaultListModel<String> modelo = new DefaultListModel<String>();
 	DefaultListModel<String> modelo2 = new DefaultListModel<String>();
 	private JScrollPane scrollPane = new JScrollPane();
-	private ControladorCrearCarta objParaNino;
+	JList listJuguetesSeleccionados = new JList();
 	private RespuestaSanta Resps;
 	JComboBox cbGenero = new JComboBox();
 	JTextPane Cartas = new JTextPane();
+	JButton btnSiguiente = new JButton("Siguiente");
+	JButton btnAtras = new JButton("Atras");
 	
 	JLabel picLabel;
 	
 	public UICrearCarta() {
 		initialize();
 	}
-	ControladorCrearCarta objCont;	
 	private JTextField txtPais;
 
 	/**
@@ -164,7 +166,7 @@ public class UICrearCarta {
 		listJuguetesDisponibles.setBounds(10, 39, 189, 84);
 		//panelSeleccionJuguetes.add(listJuguetesDisponibles);
 		
-		JList listJuguetesSeleccionados = new JList();
+		
 		listJuguetesSeleccionados.setBounds(303, 40, 215, 84);
 		listJuguetesSeleccionados.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
@@ -245,7 +247,7 @@ public class UICrearCarta {
 		
 		picLabel = new JLabel(new ImageIcon(myPicture));
 		panelDatosNino.add(picLabel);
-		JButton btnAtras = new JButton("Atras");
+		
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				switch(currentPanelString)
@@ -256,6 +258,7 @@ public class UICrearCarta {
 					break;
 				case "panelSeleccionJuguetes":
 					currentPanelString = "panelDatosNino";
+					btnSiguiente.setText("Siguiente");
 					break;
 				case "panelCarta":
 					currentPanelString = "panelSeleccionJuguetes";
@@ -266,10 +269,19 @@ public class UICrearCarta {
 		});
 		panelBotones.add(btnAtras);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		panelBotones.add(btnCancelar);
+		JButton btnSanta = new JButton("Estadistico 3000");
+		btnSanta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEÑA ( si eres santa, la contraseña es pepe )").equals("pepe"))
+				{
+					JOptionPane.showMessageDialog(frame, "Estadisdtico" + Estadistica.getModaGeneral());
+				}
+				else JOptionPane.showMessageDialog(frame, "No eres santa -.- ");
+			}
+		});
+		panelBotones.add(btnSanta);
 		
-		JButton btnSiguiente = new JButton("Siguiente");
+		
 		btnSiguiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				nextPanel();
@@ -313,12 +325,13 @@ public class UICrearCarta {
 	
 	public void nextPanel()
 	{
-		
 		switch(currentPanelString)
 		{
 		
 		case "panelDatosNino":
 		{
+			btnAtras.setEnabled(true);
+			btnSiguiente.setText("Enviar Carta");
 			String nombreNino = txtNombre.getText();
 			int edadNino;
 			try
@@ -329,7 +342,8 @@ public class UICrearCarta {
 				{
 					currentPanelString ="panelSeleccionJuguetes";
 					generarListaSeleccionable();
-					
+					modelo.removeAllElements();
+					modelo2.removeAllElements();
 					for(int i = 0; i<listaJuguetesEscogibles.size();i++)
 					{
 						modelo.addElement(listaJuguetesEscogibles.get(i).getNombre());	
@@ -353,16 +367,22 @@ public class UICrearCarta {
 			
 			break;
 		case "panelSeleccionJuguetes":
-			currentPanelString ="panelDatosNino";
+			
+			currentPanelString ="panelCarta";
 			Random random = new Random();
-			int numtemp = random.nextInt(50);// test para saber si nino bueno o malo
+			int numtemp = (int) ( Math.random() * 2 + 1);// test para saber si nino bueno o malo
 			if(numtemp%2 ==0)
 			{
 				ninoActual.setBueno(true);
+
 			}
 			else
-				ninoActual.setBueno(false);
+				{ninoActual.setBueno(false);
+
+				}
+				
 			
+			ninoActual.setJuguetes( Arrays.copyOf(modelo2.toArray(), modelo2.toArray().length, String[].class));
 			if(ninoActual.isBueno()==true)
 			{
 				
@@ -370,12 +390,18 @@ public class UICrearCarta {
 			}
 			else
 			{	Cartas.setText(generarRespuestaSanta(ninoActual));
-				Cartas.setText("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\nNombre_DelNi\u00F1o\r\nDireccion\r\nPais\r\n\r\nQuerido XXX,\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n(lista de lo que pidi\u00F3 el ni\u00F1o)\r\n\r\nSi continuas port\u00E1ndote mal, uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien XXXX, se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
 				Cartas.setText(generarRespuestaSanta(ninoActual));
-				getCards().next(getPanel_1());
+				
 			}
+			getCards().next(getPanel_1());
+			Estadistica.agregarPedido(ninoActual);
+			btnSiguiente.setText("Turno de otro niño");
+			btnAtras.setEnabled(false);
 			break;
 		case "panelCarta":
+			btnSiguiente.setText("Siguiente");
+			currentPanelString ="panelDatosNino";
+			getCards().next(getPanel_1());
 			break;
 		}
 		}	
@@ -385,11 +411,11 @@ public class UICrearCarta {
 	{
 		String temp = listJuguetesDisponibles.getSelectedValue().toString();
 		String DirImg="";
-		for(int i =0;i<Estadistica.getListaJuguetes().size();i++)
+		for(int i =0;i<Estadistica.getCantJuguetes();i++)
 		{
-			if(Estadistica.getListaJuguetes().get(i).getNombre()==temp )
+			if(Estadistica.getArregloJuguetes()[i].getNombre()==temp )
 			{
-				DirImg = Estadistica.getListaJuguetes().get(i).getDirImg();
+				DirImg = Estadistica.getArregloJuguetes()[i].getDirImg();
 				break;
 			}
 			
@@ -407,11 +433,11 @@ public class UICrearCarta {
 	public void generarListaSeleccionable()
 	{
 		listaJuguetesEscogibles = new ArrayList<Juguete>();
-		for(int i = 0; i<Estadistica.getListaJuguetes().size() ; i++)
+		for(int i = 0; i<Estadistica.getCantJuguetes(); i++)
 		{
-			if(Integer.parseInt((txtEdad.getText())) >=Estadistica.getListaJuguetes().get(i).getEdadMin())
+			if(Integer.parseInt((txtEdad.getText())) >=Estadistica.getArregloJuguetes()[i].getEdadMin())
 			{
-				listaJuguetesEscogibles.add(Estadistica.getListaJuguetes().get(i));
+				listaJuguetesEscogibles.add(Estadistica.getArregloJuguetes()[i]);
 				
 			}
 		}
@@ -424,30 +450,61 @@ public class UICrearCarta {
 	public String generarRespuestaSanta(Nino nino)
 	{
 		StringBuilder strbuild = new StringBuilder();
-		strbuild.append("\r\n\t\t\t\t\t\t\t\t\t// Pimagen navide\u00F1a\r\n\r\nPolo NorteBUENOO, _de noviembre del 20161\r\n"
-				+ nino.getNombre()
-				+ "\nDireccion\r\n"
-				+ nino.getPais()
-				+ "\n\r\nQuerido "
-				+ nino.getNombre()
-				+ ",\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito"
-				+ nino.getNombre()
-				+ " porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r"
-);
-		
-		for(int i = 0; i<nino.getJuguetes().length;i++)
+		if(nino.isBueno())
 		{
-			strbuild.append("/n" + nino.getJuguetes(i)+"/n");
+		
+			strbuild.append("Polo Norte, _de noviembre del 2016\r\n"
+					+ nino.getNombre()
+					+ "\nDireccion\r\n"
+					+ nino.getPais()
+					+ "\n\r\nQuerido "
+					+ nino.getNombre()
+					+ ",\r\n\r\nHe le\u00EDdo tu carta y he comprobado que est\u00E1s en mi lista de ni\u00F1os buenos. Te felicito"
+					+ nino.getNombre()
+					+ " porque te portas bien\r\ncon tu pap\u00E1 y mam\u00E1. Por esto para esta Navidad te llevar\u00E9\r\n\r"
+	);
+			
+			for(int i = 0; i<nino.getJuguetes().length;i++)
+			{
+				strbuild.append("/n" + nino.getJuguetes(i)+"/n");
+			}
+			
+			strbuild.append(
+					"\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y "
+							+ "siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz "
+							+ "Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus"
+					);
+			
+			System.out.println(strbuild.toString());
 		}
-		
-		strbuild.append(
-				"\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y "
-						+ "siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz "
-						+ "Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus"
-				);
-		
-		System.out.println(strbuild.toString());
+		else
+		{
+			strbuild.append("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\n"
+					+ "Nombre_DelNi\u00F1o\r\n"
+					+ "Direccion"
+					+ "\r\n"
+					+ nino.getPais()
+					+ "\r\n\r\nQuerido "
+					+ nino.getNombre()
+					+ ",\r\n\r\nHe le\u00EDdo tu carta y he comprobado que no est\u00E1s en mi lista de ni"
+					+ "\u00F1os buenos, te has portado mal con pap\u00E1 y\r\nmam\u00E1.\r\nY aunque no te has portado bien, te dar\u00E9 una oportunidad para que mejores. "
+					+ "Si en este mes mejoras tu\r\nconducta, te llevar\u00E1s lo que me has pedido que es:\r\n\r\n"
+					+ "");
+			
+			for(int i = 0; i<nino.getJuguetes().length;i++)
+			{
+				strbuild.append("/n" + nino.getJuguetes(i)+"/n");
+			}
+					strbuild.append("r\n\r\nSi continuas port\u00E1ndote mal, "
+							+ "uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien "
+							+ nino.getNombre()
+							+ ", se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy "
+							+ "Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
+					
+					
+		}
 		return strbuild.toString();
+		
 		
 	}
 }
