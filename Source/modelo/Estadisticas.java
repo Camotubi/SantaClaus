@@ -20,9 +20,9 @@ public class Estadisticas {
 	public void setListaPedidos(Nino nino) {
 		this.listaPedidos.add(nino);
 	}
-	public void agregarJuguete(String nombre, String tipo, int edadMin, int edadMax)
+	public void agregarJuguete(String nombre, String tipo, int edadMin, int edadMax, String DirImg)
 	{
-		getListaJuguetes().add(new Juguete(nombre,tipo,edadMin,edadMax));
+		getListaJuguetes().add(new Juguete(nombre,tipo,edadMin,edadMax, DirImg));
 	}
 
 	public ArrayList<Juguete> getListaJuguetes() {

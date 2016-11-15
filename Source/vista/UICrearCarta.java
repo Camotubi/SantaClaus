@@ -8,10 +8,12 @@ import javax.swing.JTextField;
 import modelo.Estadisticas;
 import modelo.Juguete;
 import modelo.Nino;
+import sun.applet.Main;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -68,31 +70,31 @@ public class UICrearCarta {
 		 scrollPane.setBounds(10, 39, 153, 84);
 		 scrollPane.setViewportView(listJuguetesDisponibles);
 		 
-		Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18);
-		Estadistica.agregarJuguete("Muñeca de Plastico Barbie","Muñeca",0,18);
-		Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18);
-		Estadistica.agregarJuguete("Batman","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Hombre Araña","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Bicicleta","Transporte",0,18);
-		Estadistica.agregarJuguete("Triciclo","Transporte",0,18);
-		Estadistica.agregarJuguete("Patineta","Transporte",0,18);
-		Estadistica.agregarJuguete("Patines","Transporte",0,18);
-		Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18);
-		Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18);
-		Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18);
-		Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18);
-		Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18);
-		Estadistica.agregarJuguete("Baseball","Pelota",0,18);
-		Estadistica.agregarJuguete("Basketball","Pelota",0,18);
-		Estadistica.agregarJuguete("Football","Pelota",0,18);
-		Estadistica.agregarJuguete("Tenis","Pelota",0,18);
-		Estadistica.agregarJuguete("Pin Pon","Pelota",5,18);
+		 Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18, "Imagenes/Muñecas/de_trapo.jpg");
+			Estadistica.agregarJuguete("Muñeca de Plastico Barbie","Muñeca",0,18,"Imagenes/Muñecas/tipo_Barbie.jpg");
+			Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18,"");
+			Estadistica.agregarJuguete("Batman","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Hombre Araña","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Bicicleta","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Triciclo","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Patineta","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Patines","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18,"");
+			Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18,"");
+			Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18,"");
+			Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18,"");
+			Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Baseball","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Basketball","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Football","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Tenis","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"");
 		currentPanelString = "panelDatosNino";
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 513, 229);
@@ -192,6 +194,11 @@ public class UICrearCarta {
 		panelSeleccionJuguetes.add(button);
 		
 		JButton btnVerJuguete = new JButton("Ver Juguete");
+		btnVerJuguete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VerImagen();
+			}
+		});
 		btnVerJuguete.setBounds(192, 123, 101, 23);
 		panelSeleccionJuguetes.add(btnVerJuguete);
 		
@@ -301,6 +308,29 @@ public class UICrearCarta {
 				
 			}
 		}
+		
+	}
+	
+	public void VerImagen()
+	{
+		String temp = listJuguetesDisponibles.getSelectedValue().toString();
+		String DirImg="";
+		for(int i =0;i<Estadistica.getListaJuguetes().size();i++)
+		{
+			if(Estadistica.getListaJuguetes().get(i).getNombre()==temp )
+			{
+				DirImg = Estadistica.getListaJuguetes().get(i).getDirImg();
+				break;
+			}
+			
+		}
+		ImageIcon Icon;
+		System.out.println(DirImg);
+		Icon = new ImageIcon(Main.class.getClassLoader().getResource(DirImg));	
+        JOptionPane.showMessageDialog(null, null, null, JOptionPane.PLAIN_MESSAGE, Icon);
+
+		
+		
 		
 	}
 	

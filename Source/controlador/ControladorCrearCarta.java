@@ -20,31 +20,31 @@ public class ControladorCrearCarta {
 	{
 		this.vista = vista;
 		this.Estadistica = modelo;
-		Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18);
-		Estadistica.agregarJuguete("Muñeca de Plastico Barbie","Muñeca",0,18);
-		Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18);
-		Estadistica.agregarJuguete("Batman","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Hombre Araña","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18);
-		Estadistica.agregarJuguete("Bicicleta","Transporte",0,18);
-		Estadistica.agregarJuguete("Triciclo","Transporte",0,18);
-		Estadistica.agregarJuguete("Patineta","Transporte",0,18);
-		Estadistica.agregarJuguete("Patines","Transporte",0,18);
-		Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18);
-		Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18);
-		Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18);
-		Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18);
-		Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18);
-		Estadistica.agregarJuguete("Baseball","Pelota",0,18);
-		Estadistica.agregarJuguete("Basketball","Pelota",0,18);
-		Estadistica.agregarJuguete("Football","Pelota",0,18);
-		Estadistica.agregarJuguete("Tenis","Pelota",0,18);
-		Estadistica.agregarJuguete("Pin Pon","Pelota",5,18);
+		Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18, "Imagenes/Muñecas/de_trapo.jpg");
+		Estadistica.agregarJuguete("Muñeca de Plastico Barbie","Muñeca",0,18,"Imagenes/Muñecas/tipo_Barbie.jpg");
+		Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18,"");
+		Estadistica.agregarJuguete("Batman","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("Hombre Araña","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18,"");
+		Estadistica.agregarJuguete("Bicicleta","Transporte",0,18,"");
+		Estadistica.agregarJuguete("Triciclo","Transporte",0,18,"");
+		Estadistica.agregarJuguete("Patineta","Transporte",0,18,"");
+		Estadistica.agregarJuguete("Patines","Transporte",0,18,"");
+		Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18,"");
+		Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18,"");
+		Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18,"");
+		Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18,"");
+		Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18,"");
+		Estadistica.agregarJuguete("Baseball","Pelota",0,18,"");
+		Estadistica.agregarJuguete("Basketball","Pelota",0,18,"");
+		Estadistica.agregarJuguete("Football","Pelota",0,18,"");
+		Estadistica.agregarJuguete("Tenis","Pelota",0,18,"");
+		Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"");
 	}
 	
 	public void inicializar()
