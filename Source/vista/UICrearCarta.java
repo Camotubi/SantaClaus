@@ -96,7 +96,7 @@ public class UICrearCarta {
 		
 		 Estadistica = new Estadisticas();
 		 listJuguetesDisponibles = new JList();
-		 scrollPane.setBounds(10, 39, 153, 107);
+		 scrollPane.setBounds(10, 39, 358, 324);
 		 scrollPane.setViewportView(listJuguetesDisponibles);
 		 
 
@@ -175,27 +175,13 @@ public class UICrearCarta {
 		
 		panelSeleccionJuguetes.add(scrollPane);
 		listJuguetesDisponibles.setBounds(10, 39, 189, 84);
-		//panelSeleccionJuguetes.add(listJuguetesDisponibles);
-		
-		
-		listJuguetesSeleccionados.setBounds(303, 40, 215, 106);
-		listJuguetesSeleccionados.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		panelSeleccionJuguetes.add(listJuguetesSeleccionados);
 		
 		JLabel lblJuguetesDisponibles = new JLabel("Juguetes Disponibles");
-		lblJuguetesDisponibles.setBounds(49, 14, 114, 14);
+		lblJuguetesDisponibles.setBounds(130, 14, 114, 14);
 		panelSeleccionJuguetes.add(lblJuguetesDisponibles);
 		
 		JLabel lblJuguetesSeleccionados = new JLabel("Juguetes Seleccionados");
-		lblJuguetesSeleccionados.setBounds(327, 14, 123, 14);
+		lblJuguetesSeleccionados.setBounds(595, 24, 123, 14);
 		panelSeleccionJuguetes.add(lblJuguetesSeleccionados);
 		
 		JButton buttonSeleccionar = new JButton("->");
@@ -216,7 +202,7 @@ public class UICrearCarta {
 				
 			}
 		});
-		buttonSeleccionar.setBounds(209, 61, 53, 23);
+		buttonSeleccionar.setBounds(406, 193, 53, 23);
 		panelSeleccionJuguetes.add(buttonSeleccionar);
 		
 		JButton button = new JButton("<-");
@@ -234,7 +220,7 @@ public class UICrearCarta {
 				}
 			}
 		});
-		button.setBounds(209, 95, 53, 23);
+		button.setBounds(406, 227, 53, 23);
 		panelSeleccionJuguetes.add(button);
 		
 		JButton btnVerJuguete = new JButton("Ver Juguete");
@@ -251,7 +237,7 @@ public class UICrearCarta {
 				}
 			}
 		});
-		btnVerJuguete.setBounds(192, 123, 101, 23);
+		btnVerJuguete.setBounds(378, 273, 101, 23);
 		panelSeleccionJuguetes.add(btnVerJuguete);
 		
 		JPanel panelCarta = new JPanel();
@@ -340,6 +326,20 @@ public class UICrearCarta {
 			}
 		});
 		panelBotones.add(btnSiguiente);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(485, 49, 355, 324);
+		panelSeleccionJuguetes.add(scrollPane_2);
+		scrollPane_2.setViewportView(listJuguetesSeleccionados);
+		listJuguetesSeleccionados.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		listJuguetesSeleccionados.setModel(modelo2);
 	}
 	
