@@ -526,7 +526,7 @@ public class UICrearCarta {
 			strbuild.append(
 					"\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y "
 							+ "siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz "
-							+ "Navidad!\r\n\r\nJOJOJOJO\r\n\r\n"
+							+ "Navidad, hostia chaval!!!!\r\n\r\nJOJOJOJO\r\n\r\n"
 					);
 			
 			System.out.println(strbuild.toString());
