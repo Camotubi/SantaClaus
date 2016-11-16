@@ -96,34 +96,36 @@ public class UICrearCarta {
 		
 		 Estadistica = new Estadisticas();
 		 listJuguetesDisponibles = new JList();
-		 scrollPane.setBounds(10, 39, 153, 84);
+		 scrollPane.setBounds(10, 39, 153, 107);
 		 scrollPane.setViewportView(listJuguetesDisponibles);
 		 
+
 		 Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18, "Imagenes/Muñecas/de_trapo.jpg");
 			Estadistica.agregarJuguete("Muñeca de Plastico Barbie","Muñeca",0,18,"Imagenes/Muñecas/tipo_Barbie.jpg");
-			Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18,"");
-			Estadistica.agregarJuguete("Batman","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("Hombre Araña","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18,"");
-			Estadistica.agregarJuguete("Bicicleta","Transporte",0,18,"");
-			Estadistica.agregarJuguete("Triciclo","Transporte",0,18,"");
-			Estadistica.agregarJuguete("Patineta","Transporte",0,18,"");
-			Estadistica.agregarJuguete("Patines","Transporte",0,18,"");
-			Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18,"");
-			Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18,"");
-			Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18,"");
-			Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18,"");
-			Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18,"");
-			Estadistica.agregarJuguete("Baseball","Pelota",0,18,"");
-			Estadistica.agregarJuguete("Basketball","Pelota",0,18,"");
-			Estadistica.agregarJuguete("Football","Pelota",0,18,"");
-			Estadistica.agregarJuguete("Tenis","Pelota",0,18,"");
-			Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"");
+			Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18,"Imagenes/Muñecas/Grande.jpg");
+			Estadistica.agregarJuguete("Batman","Figuras de accion",5,18,"Imagenes/Figuras de accion/Batman.jpg");
+			Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18,"Imagenes/Figuras de accion/Superman.jpg");
+			Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18,"Imagenes/Figuras de accion/Supergirl.jpg");
+			Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18,"Imagenes/Figuras de accion/Captain_America.jpg");
+			Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18,"Imagenes/Figuras de accion/Hulk.jpg");
+			Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18,"Imagenes/Figuras de accion/Iron_Man.jpg");
+			Estadistica.agregarJuguete("Hombre Araña","Figuras de accion",5,18,"Imagenes/Figuras de accion/Spider_Man.jpg");
+			Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18,"Imagenes/Figuras de accion/calcetin.jpg");
+			Estadistica.agregarJuguete("Bicicleta","Transporte",0,18,"Imagenes/Transporte/Bicicleta.jpg");
+			Estadistica.agregarJuguete("Triciclo","Transporte",0,18,"Imagenes/Transporte/Triciclo.jpg");
+			Estadistica.agregarJuguete("Patineta","Transporte",0,18,"Imagenes/Transporte/Patineta.jpg");
+			Estadistica.agregarJuguete("Patines","Transporte",0,18,"Imagenes/Transporte/Patines.jpg");
+			Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18,"Imagenes/Juego de Carros/Camion_Bomberos.jpg");
+			Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18,"Imagenes/Juego de Carros/Camion_Grande.jpg");
+			Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18,"Imagenes/Juego de Carros/Carro_Carrera.jpg");
+			Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18,"Imagenes/Juegos de Te/Juego_Te.jpg");
+			Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18,"Imagenes/Pelotas/Pelota_Volleyball.jpg");
+			Estadistica.agregarJuguete("Baseball","Pelota",0,18,"Imagenes/Pelotas/Pelota_Baseball.jpg");
+			Estadistica.agregarJuguete("Basketball","Pelota",0,18,"Imagenes/Pelotas/Pelota_Basketball.jpg");
+			Estadistica.agregarJuguete("Football","Pelota",0,18,"Imagenes/Pelotas/Pelota_Football.jpg");
+			Estadistica.agregarJuguete("Tenis","Pelota",0,18,"Imagenes/Pelotas/Pelota_Tenis.jpg");
+			Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"Imagenes/Pelotas/Pelota_PingPong.jpg");
+
 		currentPanelString = "panelDatosNino";
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 866, 562);
@@ -176,7 +178,7 @@ public class UICrearCarta {
 		//panelSeleccionJuguetes.add(listJuguetesDisponibles);
 		
 		
-		listJuguetesSeleccionados.setBounds(303, 40, 215, 84);
+		listJuguetesSeleccionados.setBounds(303, 40, 215, 106);
 		listJuguetesSeleccionados.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
@@ -220,10 +222,16 @@ public class UICrearCarta {
 		JButton button = new JButton("<-");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try{
 				modelo.addElement((String)listJuguetesSeleccionados.getSelectedValue());
+				if(listJuguetesSeleccionados.getSelectedValue()==null)
+						throw new SelectionException(listJuguetesSeleccionados.getSelectedValue()); 
 				int iJugueteSeleccionado = listJuguetesSeleccionados.getSelectedIndex();
 				modelo2.removeElementAt(iJugueteSeleccionado);
+			}
+				catch (SelectionException e1) {
+					JOptionPane.showMessageDialog(null, "Seleccione un juguete primero");
+				}
 			}
 		});
 		button.setBounds(209, 95, 53, 23);
@@ -232,7 +240,15 @@ public class UICrearCarta {
 		JButton btnVerJuguete = new JButton("Ver Juguete");
 		btnVerJuguete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerImagen();
+				try{
+					if(listJuguetesDisponibles.getSelectedValue()==null){
+						throw new SelectionException(listJuguetesSeleccionados.getSelectedValue());
+					}
+					VerImagen();
+				}
+				catch (SelectionException e1) {
+					JOptionPane.showMessageDialog(null, "Seleccione un juguete primero");
+				}
 			}
 		});
 		btnVerJuguete.setBounds(192, 123, 101, 23);
@@ -303,7 +319,7 @@ public class UICrearCarta {
 		JButton btnSanta = new JButton("Estadistico 3000");
 		btnSanta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEÑA ( si eres santa, la contraseña es pepe )").equals("pepe"))
+				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEï¿½A ( si eres santa, la contraseï¿½a es pepe )").equals("pepe"))
 				{
 					JOptionPane.showMessageDialog(frame, "Estadisticos\nEL Juguete mas Popular:" + Estadistica.getModaGeneral()+ "\nEl Juguete mas Popular entre las niñas: " + Estadistica.getModaFemenina()+
 							"\nEl Juguete mas popular entre los niños: " +Estadistica.getModaVaronil()
@@ -403,7 +419,7 @@ public class UICrearCarta {
 			
 			currentPanelString ="panelCarta";
 			Random random = new Random();
-			int numtemp = (int) ( Math.random() * 2 + 1);// niño bueno o malo sirve
+			int numtemp = (int) ( Math.random() * 2 + 1);// niï¿½o bueno o malo sirve
 			if(numtemp%2 ==0)
 			{
 				ninoActual.setBueno(true);
@@ -488,12 +504,12 @@ public class UICrearCarta {
 			
 			
 			strbuild.append(""
-					+"Polo Norte, _de noviembre del 2016\r\n"
+					+"Polo Norte, 16 de noviembre del 2016\r\n"
 					+ nino.getNombre()
-					+ "\nDireccion\r\n"
+					+ "\nDireccion:\r\n"
 					+nino.getDireccion()
 					
-					+"\nPais"
+					+"\nPais:\n"
 					+ nino.getPais()
 					+ "\n\r\nQuerido "
 					+ nino.getNombre()
@@ -517,12 +533,12 @@ public class UICrearCarta {
 		}
 		else
 		{
-			strbuild.append("Polo Norte, _de noviembre del 20161\r\n"
+			strbuild.append("Polo Norte, 16 de noviembre del 20161\r\n"
 					+ nino.getNombre()
-					+ "\nDireccion\r\n"
+					+ "\nDireccion: \r\n"
 					+nino.getDireccion()
 					
-					+"\nPais"
+					+"\nPais: \n"
 					+ nino.getPais()
 					+ "\r\n\r\nQuerido "
 					+ nino.getNombre()
