@@ -7,7 +7,6 @@ public class Nino {
 	private String pais;
 	private String[] juguetes;
 	private boolean bueno;
-	private String direccion;
 	private String carta;
 	private String direccion;
 	
