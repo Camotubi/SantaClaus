@@ -305,7 +305,9 @@ public class UICrearCarta {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEÑA ( si eres santa, la contraseña es pepe )").equals("pepe"))
 				{
-					JOptionPane.showMessageDialog(frame, "Estadisdtico" + Estadistica.getModaGeneral());
+					JOptionPane.showMessageDialog(frame, "Estadisticos\nEL Juguete mas Popular:" + Estadistica.getModaGeneral()+ "\nEl Juguete mas Popular entre las niñas: " + Estadistica.getModaFemenina()+
+							"\nEl Juguete mas popular entre los niños: " +Estadistica.getModaVaronil()
+							);
 				}
 				else JOptionPane.showMessageDialog(frame, "No eres santa -.- ");
 			}

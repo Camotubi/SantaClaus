@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 public class Estadisticas {
 	private Juguete[] arregloJuguetes = new Juguete[100];
 	private Nino[] arregloNinos = new Nino[100];
@@ -32,8 +34,9 @@ public class Estadisticas {
 	
 	
 	public void moda() {
-		int[] a = new int[getArregloPedidos().length];
-
+		ArrayList<Integer> listpedidosGenerales = new ArrayList<Integer>();
+		ArrayList<Integer> listpedidosNinos = new ArrayList<Integer>();
+		ArrayList<Integer> listpedidosNinas = new ArrayList<Integer>();
 	    for(int i = 0; i<cantJuguetes;i++)
 	    {
 	    	if(getArregloJuguetes()[i] != null)
@@ -42,42 +45,38 @@ public class Estadisticas {
 	    		{
 	    			if(getArregloPedidos()[x]!=null)
 		    			{
-	    				System.out.println("a"+getArregloPedidos()[x]);
-	    				System.out.println("b"+getArregloJuguetes()[i].getNombre());
 	    					if(getArregloPedidos()[x].equals(getArregloJuguetes()[i].getNombre()))
-		    			
 			    			{
-	    						System.out.println("waddup");
-			    				a[x] = i+1;
+			    				listpedidosGenerales.add(i);
+			    				if(getArregloNinos()[x].getGenero()=="M")
+			    					listpedidosNinos.add(i);
+			    				else
+			    					listpedidosNinas.add(i);
 			    			}
+	    					
 		    			}
 	    		}	
 	    	}
 	    }
-	    Arrays.sort(a);
-
-	    int anterior = a[0];
-	    int moda = a[0];
+	    Collections.sort(listpedidosGenerales);
+	    Collections.sort(listpedidosNinos);
+	    Collections.sort(listpedidosNinas);
+	    // Moda General
+	    int anterior =listpedidosGenerales.get(0) ;
+	    int moda = listpedidosGenerales.get(0);
 	    int count = 1;
 	    int maxCount = 1;
-for(int i =0;i<a.length;i++)
-{
-	if(a[i] !=0)
-	{
-		anterior = a[i];
-		break;
-	}
-}
-	    for (int i = 1; i < a.length; i++) {
-	    	if(a[i] != 0){
-	    		if (a[i] == anterior)
+
+	    for (int i = 1; i <listpedidosGenerales.size(); i++) {
+	    	if(listpedidosGenerales.get(i)!= 0){
+	    		if (listpedidosGenerales.get(i) == anterior)
 		            count++;
 		        else {
 		            if (count > maxCount) {
-		                moda = a[i-1];
+		                moda = listpedidosGenerales.get(i-1);
 		                maxCount = count;
 		            }
-		            anterior = a[i];
+		            anterior = listpedidosGenerales.get(i);
 		            count = 1;
 		        }
 	    	}
@@ -85,14 +84,88 @@ for(int i =0;i<a.length;i++)
 	    }
 	    if(count>maxCount)
 	    {
-	    	this.setModaGeneral(getArregloJuguetes()[a[a.length-1]-1].getNombre());
+	    	this.setModaGeneral(getArregloJuguetes()[listpedidosGenerales.get(listpedidosGenerales.size()-1)].getNombre());
 	    	System.out.println("poraca");
 	    }
 	    else
 	    {
-	    	this.setModaGeneral(getArregloJuguetes()[moda-1].getNombre());
+	    	this.setModaGeneral(getArregloJuguetes()[moda].getNombre());
 	    	System.out.println("poraqui");
 	    }
+	    //Moda ninos
+	    if(listpedidosNinos.size()>0)
+	    {
+	    	anterior =listpedidosNinos.get(0) ;
+		    moda = listpedidosNinos.get(0);
+		    count = 1;
+		    maxCount = 1;
+
+		    for (int i = 1; i <listpedidosNinos.size(); i++) {
+		    	if(listpedidosNinos.get(i)!= 0){
+		    		if (listpedidosNinos.get(i) == anterior)
+			            count++;
+			        else {
+			            if (count > maxCount) {
+			                moda = listpedidosNinos.get(i-1);
+			                maxCount = count;
+			            }
+			            anterior = listpedidosNinos.get(i);
+			            count = 1;
+			        }
+		    	}
+		        
+		    }
+		    if(count>maxCount)
+		    {
+		    	this.setModaVaronil(getArregloJuguetes()[listpedidosNinos.get(listpedidosNinos.size()-1)].getNombre());
+		    	System.out.println("poraca");
+		    }
+		    else
+		    {
+		    	this.setModaVaronil(getArregloJuguetes()[moda].getNombre());
+		    	System.out.println("poraqui");
+		    }
+	    }
+	    
+	    //Moda Ninas
+	    if(listpedidosNinas.size()>0)
+	    {
+	    	 anterior =listpedidosNinas.get(0) ;
+	 	    moda = listpedidosNinas.get(0);
+	 	    count = 1;
+	 	    maxCount = 1;
+
+	 	    for (int i = 1; i <listpedidosNinas.size(); i++) {
+	 	    	if(listpedidosNinas.get(i)!= 0){
+	 	    		if (listpedidosNinas.get(i) == anterior)
+	 		            count++;
+	 		        else {
+	 		            if (count > maxCount) {
+	 		                moda = listpedidosNinas.get(i-1);
+	 		                maxCount = count;
+	 		            }
+	 		            anterior = listpedidosNinas.get(i);
+	 		            count = 1;
+	 		        }
+	 	    	}
+	 	        
+	 	    }
+	 	    if(count>maxCount)
+	 	    {
+	 	    	this.setModaFemenina(getArregloJuguetes()[listpedidosNinas.get(listpedidosNinas.size()-1)].getNombre());
+	 	    	System.out.println("poraca");
+	 	    }
+	 	    else
+	 	    {
+	 	    	this.setModaFemenina(getArregloJuguetes()[moda].getNombre());
+	 	    	System.out.println("poraqui");
+	 	    }
+	    }
+	   
+	    	
+	    	
+	    	
+	 
 	    	
 
 	}
