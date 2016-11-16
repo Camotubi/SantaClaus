@@ -41,6 +41,10 @@ import javax.swing.JTextArea;
 import javax.swing.JInternalFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollBar;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import javax.swing.SwingConstants;
 @SuppressWarnings("unused")
 public class UICrearCarta {
 
@@ -48,7 +52,7 @@ public class UICrearCarta {
 	private JTextField txtNombre;
 	private JTextField txtEdad = new JTextField();
 	private CardLayout cards = new CardLayout(0, 0);
-	private JPanel panel_1 = new JPanel();
+	private JPanel panel_1 =new JPanel();
 	private String currentPanelString;
 	private JLabel lblEdad = new JLabel("Edad:");
 	private Estadisticas Estadistica;
@@ -65,7 +69,7 @@ public class UICrearCarta {
 	JButton btnSiguiente = new JButton("Siguiente");
 	JButton btnAtras = new JButton("Atras");
 	
-	JLabel picLabel;
+	JLabel picLabel,memLabel;
 	
 	public UICrearCarta() {
 		initialize();
@@ -78,8 +82,10 @@ public class UICrearCarta {
 	@SuppressWarnings({ "rawtypes", "serial", "unchecked" })
 	private void initialize() {
 		BufferedImage myPicture = null;
+		BufferedImage Membrete = null;
 		try {
 			myPicture = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/pepeSanta.jpg"));
+			Membrete = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/TopeDeCarta.jpg"));
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(frame, "rip");
 			e1.printStackTrace();
@@ -233,12 +239,15 @@ public class UICrearCarta {
 		panel_1.add(panelCarta, "panelCarta");
 		panelCarta.setLayout(null);
 		
+		
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 581, 255);
+		scrollPane_1.setBounds(0, 101, 850, 390);
 		panelCarta.add(scrollPane_1);
 		
 		
 		scrollPane_1.setViewportView(Cartas);
+		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setBackground(Color.RED);
 		getFrame().getContentPane().add(panelBotones, BorderLayout.SOUTH);
@@ -247,6 +256,11 @@ public class UICrearCarta {
 		
 		picLabel = new JLabel(new ImageIcon(myPicture));
 		panelDatosNino.add(picLabel);
+		
+		memLabel = new JLabel(new ImageIcon(Membrete));
+		memLabel.setLocation(0, 0);
+		memLabel.setSize(new Dimension(850, 101));
+		panelCarta.add(memLabel);
 		
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -370,7 +384,7 @@ public class UICrearCarta {
 			
 			currentPanelString ="panelCarta";
 			Random random = new Random();
-			int numtemp = (int) ( Math.random() * 2 + 1);// test para saber si nino bueno o malo
+			int numtemp = (int) ( Math.random() * 2 + 1);// niño bueno o malo sirve
 			if(numtemp%2 ==0)
 			{
 				ninoActual.setBueno(true);
@@ -452,8 +466,10 @@ public class UICrearCarta {
 		StringBuilder strbuild = new StringBuilder();
 		if(nino.isBueno())
 		{
-		
-			strbuild.append("Polo Norte, _de noviembre del 2016\r\n"
+			
+			
+			strbuild.append(""
+					+"Polo Norte, _de noviembre del 2016\r\n"
 					+ nino.getNombre()
 					+ "\nDireccion\r\n"
 					+ nino.getPais()
@@ -466,7 +482,7 @@ public class UICrearCarta {
 			
 			for(int i = 0; i<nino.getJuguetes().length;i++)
 			{
-				strbuild.append("/n" + nino.getJuguetes(i)+"/n");
+				strbuild.append("\n" + nino.getJuguetes(i)+"\n");
 			}
 			
 			strbuild.append(
@@ -480,7 +496,7 @@ public class UICrearCarta {
 		else
 		{
 			strbuild.append("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\n"
-					+ "Nombre_DelNi\u00F1o\r\n"
+					+ nino.getNombre()
 					+ "Direccion"
 					+ "\r\n"
 					+ nino.getPais()
@@ -493,7 +509,7 @@ public class UICrearCarta {
 			
 			for(int i = 0; i<nino.getJuguetes().length;i++)
 			{
-				strbuild.append("/n" + nino.getJuguetes(i)+"/n");
+				strbuild.append("\n" + nino.getJuguetes(i)+"\n");
 			}
 					strbuild.append("r\n\r\nSi continuas port\u00E1ndote mal, "
 							+ "uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien "
