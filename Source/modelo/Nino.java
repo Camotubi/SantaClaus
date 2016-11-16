@@ -7,6 +7,7 @@ public class Nino {
 	private String pais;
 	private String[] juguetes;
 	private boolean bueno;
+	private String direccion;
 	private String carta;
 	
 	public Nino(String nombre, int edad, String  genero, String pais, boolean bueno)

@@ -95,7 +95,7 @@ public class UICrearCarta {
 		
 		 Estadistica = new Estadisticas();
 		 listJuguetesDisponibles = new JList();
-		 scrollPane.setBounds(10, 39, 153, 84);
+		 scrollPane.setBounds(10, 39, 153, 107);
 		 scrollPane.setViewportView(listJuguetesDisponibles);
 		 
 		 Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18, "Imagenes/Muñecas/de_trapo.jpg");
@@ -175,7 +175,7 @@ public class UICrearCarta {
 		//panelSeleccionJuguetes.add(listJuguetesDisponibles);
 		
 		
-		listJuguetesSeleccionados.setBounds(303, 40, 215, 84);
+		listJuguetesSeleccionados.setBounds(303, 40, 215, 106);
 		listJuguetesSeleccionados.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
