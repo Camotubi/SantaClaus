@@ -430,7 +430,7 @@ public class UICrearCarta {
 
 				}
 				
-			
+			ninoActual.setCantJuguetes(modelo2.getSize());
 			ninoActual.setJuguetes( Arrays.copyOf(modelo2.toArray(), modelo2.toArray().length, String[].class));
 			if(ninoActual.isBueno()==true)
 			{

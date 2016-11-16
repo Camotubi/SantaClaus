@@ -48,14 +48,31 @@ public class Estadisticas {
 	    					if(getArregloPedidos()[x].equals(getArregloJuguetes()[i].getNombre()))
 			    			{
 			    				listpedidosGenerales.add(i);
-			    				if(getArregloNinos()[x].getGenero()=="M")
-			    					listpedidosNinos.add(i);
-			    				else
-			    					listpedidosNinas.add(i);
+
 			    			}
 	    					
 		    			}
 	    		}	
+	    		Nino ninoActual;
+	    		for(int n = 0; n<cantNinos;n++)
+	    		{
+	    			ninoActual = getArregloNinos()[n];
+	    			for(int x = 0 ; x < ninoActual.getCantJuguetes();x++)
+		    		{
+		    			if(getArregloPedidos()[x]!=null)
+			    			{
+		    					if(getArregloPedidos()[x].equals(getArregloJuguetes()[i].getNombre()))
+				    			{
+				    				if(getArregloNinos()[n].getGenero()=="M")
+				    					listpedidosNinos.add(i);
+				    				else
+				    					listpedidosNinas.add(i);
+				    			}
+		    					
+			    			}
+		    		}
+	    		}
+	    		
 	    	}
 	    }
 	    Collections.sort(listpedidosGenerales);

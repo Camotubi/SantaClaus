@@ -9,6 +9,7 @@ public class Nino {
 	private boolean bueno;
 	private String carta;
 	private String direccion;
+	private int cantJuguetes;
 	
 	public Nino(String nombre, int edad, String  genero, String pais,String dir, boolean bueno)
 	{
@@ -91,6 +92,14 @@ public class Nino {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public int getCantJuguetes() {
+		return cantJuguetes;
+	}
+
+	public void setCantJuguetes(int cantJuguetes) {
+		this.cantJuguetes = cantJuguetes;
 	}
 
 
