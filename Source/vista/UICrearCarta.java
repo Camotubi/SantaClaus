@@ -69,7 +69,7 @@ public class UICrearCarta {
 	JButton btnSiguiente = new JButton("Siguiente");
 	JButton btnAtras = new JButton("Atras");
 	
-	JLabel picLabel,memLabel;
+	JLabel picLabel,memLabel,FirmaSanta;
 	
 	public UICrearCarta() {
 		initialize();
@@ -83,9 +83,11 @@ public class UICrearCarta {
 	private void initialize() {
 		BufferedImage myPicture = null;
 		BufferedImage Membrete = null;
+		BufferedImage FirmSanta = null;
 		try {
 			myPicture = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/pepeSanta.jpg"));
 			Membrete = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/TopeDeCarta.jpg"));
+			FirmSanta = ImageIO.read(UICrearCarta.class.getClassLoader().getResource("Imagenes/firma.jpg"));
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(frame, "rip");
 			e1.printStackTrace();
@@ -242,7 +244,7 @@ public class UICrearCarta {
 		
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 101, 850, 390);
+		scrollPane_1.setBounds(0, 143, 850, 305);
 		panelCarta.add(scrollPane_1);
 		
 		
@@ -254,13 +256,20 @@ public class UICrearCarta {
 		
 		scrollPane.setViewportView(listJuguetesDisponibles);
 		
-		picLabel = new JLabel(new ImageIcon(myPicture));
+		picLabel = new JLabel(new ImageIcon(myPicture)); // pepe magic
 		panelDatosNino.add(picLabel);
 		
-		memLabel = new JLabel(new ImageIcon(Membrete));
+		memLabel = new JLabel(new ImageIcon(Membrete)); // membrete
 		memLabel.setLocation(0, 0);
-		memLabel.setSize(new Dimension(850, 101));
+		memLabel.setSize(new Dimension(850, 142));
 		panelCarta.add(memLabel);
+		
+		FirmaSanta = new JLabel(new ImageIcon(FirmSanta)); // firma santa
+		FirmaSanta.setVerticalTextPosition(SwingConstants.BOTTOM);
+		FirmaSanta.setVerticalAlignment(SwingConstants.BOTTOM);
+		FirmaSanta.setBounds(0, 447, 850, 44);
+		panelCarta.add(FirmaSanta);
+		
 		
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -488,14 +497,14 @@ public class UICrearCarta {
 			strbuild.append(
 					"\r\n\r\nSigue port\u00E1ndote bien, sacando buenas notas en el Colegio y "
 							+ "siendo obediente a tus padres\r\n\r\n\u00A1Te deseo una muy Feliz "
-							+ "Navidad!\r\n\r\nJOJOJOJO\r\n\r\nSanta Claus \uF0E0 Esto debe ser una imagen con la firma Santa Claus"
+							+ "Navidad!\r\n\r\nJOJOJOJO\r\n\r\n"
 					);
 			
 			System.out.println(strbuild.toString());
 		}
 		else
 		{
-			strbuild.append("\r\n\t\t\t\t\t\t\t\t\t// imagen navide\u00F1a\r\n\r\nMALOOOPolo Norte, _de noviembre del 20161\r\n"
+			strbuild.append("Polo Norte, _de noviembre del 20161\r\n"
 					+ nino.getNombre()
 					+ "Direccion"
 					+ "\r\n"
@@ -515,7 +524,7 @@ public class UICrearCarta {
 							+ "uno de mis duendes te llevar\u00E1 carb\u00F3n.\r\n\r\nAs\u00ED que p\u00F3rtate bien "
 							+ nino.getNombre()
 							+ ", se que eres en el fondo un ni\u00F1o muy bueno.\r\n\r\n\r\n\u00A1Te deseo una muy "
-							+ "Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\nSanta Claus---- Esto debe ser una imagen con la firma Santa Claus\r");
+							+ "Feliz Navidad!\r\n\r\n\r\nJOJOJOJO\r\n\r\n\r\n");
 					
 					
 		}
