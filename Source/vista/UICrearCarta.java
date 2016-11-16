@@ -238,7 +238,15 @@ public class UICrearCarta {
 		JButton btnVerJuguete = new JButton("Ver Juguete");
 		btnVerJuguete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerImagen();
+				try{
+					if(listJuguetesDisponibles.getSelectedValue()==null){
+						throw new SelectionException(listJuguetesSeleccionados.getSelectedValue());
+					}
+					VerImagen();
+				}
+				catch (SelectionException e1) {
+					JOptionPane.showMessageDialog(null, "Seleccione un juguete primero");
+				}
 			}
 		});
 		btnVerJuguete.setBounds(192, 123, 101, 23);
