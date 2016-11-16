@@ -99,6 +99,7 @@ public class UICrearCarta {
 		 scrollPane.setBounds(10, 39, 153, 107);
 		 scrollPane.setViewportView(listJuguetesDisponibles);
 		 
+<<<<<<< HEAD
 		 Estadistica.agregarJuguete("Muñeca de Trapo","Muñeca",0,18, "Imagenes/Muñecas/de_trapo.jpg");
 			Estadistica.agregarJuguete("Muñeca de Plastico Barbie","Muñeca",0,18,"Imagenes/Muñecas/tipo_Barbie.jpg");
 			Estadistica.agregarJuguete("Muñeca Grande","Muñeca",0,18,"Imagenes/Muñecas/Grande.jpg");
@@ -124,6 +125,33 @@ public class UICrearCarta {
 			Estadistica.agregarJuguete("Football","Pelota",0,18,"Imagenes/Pelotas/Pelota_Football.jpg");
 			Estadistica.agregarJuguete("Tenis","Pelota",0,18,"Imagenes/Pelotas/Pelota_Tenis.jpg");
 			Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"Imagenes/Pelotas/Pelota_PingPong.jpg");
+=======
+		 Estadistica.agregarJuguete("Muï¿½eca de Trapo","Muï¿½eca",0,18, "Imagenes/Muï¿½ecas/de_trapo.jpg");
+			Estadistica.agregarJuguete("Muï¿½eca de Plastico Barbie","Muï¿½eca",0,18,"Imagenes/Muï¿½ecas/tipo_Barbie.jpg");
+			Estadistica.agregarJuguete("Muï¿½eca Grande","Muï¿½eca",0,18,"");
+			Estadistica.agregarJuguete("Batman","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("SuperMan","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("SuperGirl","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Capitan America","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Hulk","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Iron Man","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Hombre Araï¿½a","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Calcetin con RombosMan","Figuras de accion",5,18,"");
+			Estadistica.agregarJuguete("Bicicleta","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Triciclo","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Patineta","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Patines","Transporte",0,18,"");
+			Estadistica.agregarJuguete("Camion de Bomberos","Juego de Carros",0,18,"");
+			Estadistica.agregarJuguete("Camiones grandes","Juego de Carros",0,18,"");
+			Estadistica.agregarJuguete("HOT WHEELSSSS","Juego de Carros",5,18,"");
+			Estadistica.agregarJuguete("Juego de Te","Juego de Te",5,18,"");
+			Estadistica.agregarJuguete("Pelota de Volleyball","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Baseball","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Basketball","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Football","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Tenis","Pelota",0,18,"");
+			Estadistica.agregarJuguete("Pin Pon","Pelota",5,18,"");
+>>>>>>> 225ff9786b67538dabad4a2bc2143d1b605177f4
 		currentPanelString = "panelDatosNino";
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 866, 562);
@@ -220,10 +248,16 @@ public class UICrearCarta {
 		JButton button = new JButton("<-");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try{
 				modelo.addElement((String)listJuguetesSeleccionados.getSelectedValue());
+				if(listJuguetesSeleccionados.getSelectedValue()==null)
+						throw new SelectionException(listJuguetesSeleccionados.getSelectedValue()); 
 				int iJugueteSeleccionado = listJuguetesSeleccionados.getSelectedIndex();
 				modelo2.removeElementAt(iJugueteSeleccionado);
+			}
+				catch (SelectionException e1) {
+					JOptionPane.showMessageDialog(null, "Seleccione un juguete primero");
+				}
 			}
 		});
 		button.setBounds(209, 95, 53, 23);
@@ -232,7 +266,15 @@ public class UICrearCarta {
 		JButton btnVerJuguete = new JButton("Ver Juguete");
 		btnVerJuguete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VerImagen();
+				try{
+					if(listJuguetesDisponibles.getSelectedValue()==null){
+						throw new SelectionException(listJuguetesSeleccionados.getSelectedValue());
+					}
+					VerImagen();
+				}
+				catch (SelectionException e1) {
+					JOptionPane.showMessageDialog(null, "Seleccione un juguete primero");
+				}
 			}
 		});
 		btnVerJuguete.setBounds(192, 123, 101, 23);
@@ -303,7 +345,7 @@ public class UICrearCarta {
 		JButton btnSanta = new JButton("Estadistico 3000");
 		btnSanta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEÑA ( si eres santa, la contraseña es pepe )").equals("pepe"))
+				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEï¿½A ( si eres santa, la contraseï¿½a es pepe )").equals("pepe"))
 				{
 					JOptionPane.showMessageDialog(frame, "Estadisdtico" + Estadistica.getModaGeneral());
 				}
@@ -401,7 +443,7 @@ public class UICrearCarta {
 			
 			currentPanelString ="panelCarta";
 			Random random = new Random();
-			int numtemp = (int) ( Math.random() * 2 + 1);// niño bueno o malo sirve
+			int numtemp = (int) ( Math.random() * 2 + 1);// niï¿½o bueno o malo sirve
 			if(numtemp%2 ==0)
 			{
 				ninoActual.setBueno(true);
@@ -426,7 +468,7 @@ public class UICrearCarta {
 			}
 			getCards().next(getPanel_1());
 			Estadistica.agregarPedido(ninoActual);
-			btnSiguiente.setText("Turno de otro niño");
+			btnSiguiente.setText("Turno de otro niï¿½o");
 			btnAtras.setEnabled(false);
 			break;
 		case "panelCarta":
