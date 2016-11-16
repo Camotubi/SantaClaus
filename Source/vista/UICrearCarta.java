@@ -75,6 +75,7 @@ public class UICrearCarta {
 		initialize();
 	}
 	private JTextField txtPais;
+	private JTextField txtDireccion;
 
 	/**
 	 * Initialize the contents of the frame.
@@ -256,6 +257,13 @@ public class UICrearCarta {
 		
 		scrollPane.setViewportView(listJuguetesDisponibles);
 		
+		JLabel lblDireccion = new JLabel("Direccion:");
+		panelDatosNino.add(lblDireccion);
+		
+		txtDireccion = new JTextField();
+		panelDatosNino.add(txtDireccion);
+		txtDireccion.setColumns(10);
+		
 		picLabel = new JLabel(new ImageIcon(myPicture)); // pepe magic
 		panelDatosNino.add(picLabel);
 		
@@ -360,7 +368,7 @@ public class UICrearCarta {
 			try
 			{
 				edadNino = Integer.parseInt(txtEdad.getText());
-				ninoActual = new Nino(nombreNino,edadNino,(String)cbGenero.getSelectedItem(),txtPais.getText(),true);
+				ninoActual = new Nino(nombreNino,edadNino,(String)cbGenero.getSelectedItem(),txtPais.getText(),txtDireccion.getText(),true);
 				if(edadNino<18)
 				{
 					currentPanelString ="panelSeleccionJuguetes";
@@ -481,6 +489,9 @@ public class UICrearCarta {
 					+"Polo Norte, _de noviembre del 2016\r\n"
 					+ nino.getNombre()
 					+ "\nDireccion\r\n"
+					+nino.getDireccion()
+					
+					+"\nPais"
 					+ nino.getPais()
 					+ "\n\r\nQuerido "
 					+ nino.getNombre()
@@ -506,8 +517,10 @@ public class UICrearCarta {
 		{
 			strbuild.append("Polo Norte, _de noviembre del 20161\r\n"
 					+ nino.getNombre()
-					+ "Direccion"
-					+ "\r\n"
+					+ "\nDireccion\r\n"
+					+nino.getDireccion()
+					
+					+"\nPais"
 					+ nino.getPais()
 					+ "\r\n\r\nQuerido "
 					+ nino.getNombre()
