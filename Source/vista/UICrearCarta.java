@@ -305,7 +305,7 @@ public class UICrearCarta {
 		JButton btnSanta = new JButton("Estadistico 3000");
 		btnSanta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEï¿½A ( si eres santa, la contraseï¿½a es pepe )").equals("pepe"))
+				if(JOptionPane.showInputDialog("SANTA, INGRESA LA CONTRASEÑA ( si eres santa, la contraseïña es pepe )").equals("pepe"))
 				{
 					JOptionPane.showMessageDialog(frame, "Estadisticos\nEL Juguete mas Popular:" + Estadistica.getModaGeneral()+ "\nEl Juguete mas Popular entre las niñas: " + Estadistica.getModaFemenina()+
 							"\nEl Juguete mas popular entre los niños: " +Estadistica.getModaVaronil()
