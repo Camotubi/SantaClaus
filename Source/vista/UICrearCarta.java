@@ -442,7 +442,7 @@ public class UICrearCarta {
 			}
 			getCards().next(getPanel_1());
 			Estadistica.agregarPedido(ninoActual);
-			btnSiguiente.setText("Turno de otro niï¿½o");
+			btnSiguiente.setText("Turno de otro niño");
 			btnAtras.setEnabled(false);
 			break;
 		case "panelCarta":
@@ -502,12 +502,12 @@ public class UICrearCarta {
 			
 			
 			strbuild.append(""
-					+"Polo Norte, _de noviembre del 2016\r\n"
+					+"Polo Norte, 16 de noviembre del 2016\r\n"
 					+ nino.getNombre()
-					+ "\nDireccion\r\n"
+					+ "\nDireccion:\r\n"
 					+nino.getDireccion()
 					
-					+"\nPais"
+					+"\nPais:\n"
 					+ nino.getPais()
 					+ "\n\r\nQuerido "
 					+ nino.getNombre()
@@ -531,12 +531,12 @@ public class UICrearCarta {
 		}
 		else
 		{
-			strbuild.append("Polo Norte, _de noviembre del 20161\r\n"
+			strbuild.append("Polo Norte, 16 de noviembre del 20161\r\n"
 					+ nino.getNombre()
-					+ "\nDireccion\r\n"
+					+ "\nDireccion: \r\n"
 					+nino.getDireccion()
 					
-					+"\nPais"
+					+"\nPais: \n"
 					+ nino.getPais()
 					+ "\r\n\r\nQuerido "
 					+ nino.getNombre()
